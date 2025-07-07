@@ -2,6 +2,15 @@ package main
 
 import (
 	"embed"
+	_ "github.com/boombuler/barcode"
+	_ "github.com/dgrijalva/jwt-go"
+	_ "github.com/gorilla/securecookie"
+	_ "github.com/ncruces/julianday"
+	_ "github.com/prometheus/client_golang/prometheus" // use a real subpackage
+	_ "github.com/stretchr/testify"
+	_ "github.com/tetratelabs/wazero"
+	_ "golang.org/x/crypto/bcrypt" // use a real subpackage
+	_ "gopkg.in/yaml.v2"
 	"log"
 	"net/http"
 	router "verademo-go/src-app/routes"
@@ -17,7 +26,6 @@ var resources embed.FS
 var templates embed.FS
 
 func main() {
-
 	session.Configure(session.Session{Name: "verademo", SecretKey: "key"})
 	sqlite.OpenDB()
 	log.Print("\nStarting VerademoGO....")
