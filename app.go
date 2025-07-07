@@ -2,6 +2,14 @@ package main
 
 import (
 	"embed"
+	"github.com/boombuler/barcode"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gorilla/securecookie"
+	"github.com/ncruces/julianday"
+	"github.com/stretchr/testify"
+	"github.com/tetratelabs/wazero"
+	"golang.org/x/crypto/bcrypt" // use a real subpackage
+	"gopkg.in/yaml.v2"
 	"log"
 	"net/http"
 	router "verademo-go/src-app/routes"
