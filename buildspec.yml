@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing dependencies...
+      # Add npm install or other commands here if needed
+
+  pre_build:
+    commands:
+      - echo Preparing environment...
+      - rm -f verademo-go.zip
+
+  build:
+    commands:
+      - echo Zipping app files...
+      - zip -r verademo-go.zip .
+
+artifacts:
+  files:
+    - verademo-go.zip
+  name: scan-target
