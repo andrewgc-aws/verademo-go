@@ -1,0 +1,13 @@
+version: 0.2  
+
+phases:   
+  build:
+    commands:
+    # Checkout code.
+    - git clone https://github.com/andrewgc-aws/verademo-go
+  post_build:
+    # Download the Veracode API wrapper and submit the app for a Static Policy
+    commands:
+      - curl -O https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/22.5.10.0/vosp-api-wrappers-java-22.5.10.0.jar
+      - java -jar vosp-api-wrappers-java-22.5.10.0.jar -vid $VID -vkey $VKEY -appname verademo-awsgo -action UploadAndScan -createprofile true -scantimeout 60 -scanpollinginterval 30 -criticality Medium -filepath verademo-go/veracode-auto-pack-verademo-go-go.zip -version $CODEBUILD_BUILD_ID
+    # Login to the Veracode platform to see results. Visit here to more options - https://docs.veracode.com/r/r_wrapper_parameters
